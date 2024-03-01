@@ -1,11 +1,11 @@
 import fs from "fs";
-import { index1 } from "./input1/index.mjs";
-import { index2 } from "./input2/index.mjs";
-import { index3 } from "./input3/index.mjs";
-import { index4 } from "./input4/index.mjs";
-import { index5 } from "./input5/index.mjs";
-import { index6 } from "./input6/index.mjs";
-import { index7 } from "./input7/index.mjs";
+import { index1 } from "./inputs/input1/index.mjs";
+import { index2 } from "./inputs/input2/index.mjs";
+import { index3 } from "./inputs/input3/index.mjs";
+import { index4 } from "./inputs/input4/index.mjs";
+import { index5 } from "./inputs/input5/index.mjs";
+import { index6 } from "./inputs/input6/index.mjs";
+import { index7 } from "./inputs/input7/index.mjs";
 
 export const createDB = () => {
   function readFile(fileName) {
@@ -36,7 +36,6 @@ export const createDB = () => {
     "./output/output5.json",
     "./output/output6.json",
     "./output/output7.json",
-    // Add more file names as needed
   ];
 
   const promises = fileNames.map((fileName) => {
@@ -45,7 +44,6 @@ export const createDB = () => {
 
   Promise.all(promises)
     .then((results) => {
-      // results is an array containing the content of each file
       let combinedArray = [];
 
       results.forEach((content) => {
@@ -56,8 +54,8 @@ export const createDB = () => {
       console.log("Combined array:", combinedArray);
 
       fs.writeFileSync(
-        "./output/finalOutput.json",
-        JSON.stringify(combinedArray)
+        "./output/finalOutput.mjs",
+        "export const acronyms = " + JSON.stringify(combinedArray)
       );
     })
     .catch((error) => {
